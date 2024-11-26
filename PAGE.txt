@@ -1,0 +1,9 @@
+**RESOURCES**
+
+Backend:
+
+bcryptjs cloudinary cookie-parser cors dotenv express jsonwebtoken mongoose nodemon multer
+
+FRONTEND:
+
+@reduxjs/toolkit axios class-variance-authority clsx lucide-react react-router-dom react-redux tailwindcss tailwindcss-animate
