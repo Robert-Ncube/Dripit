@@ -92,13 +92,6 @@ const Products = () => {
     });
   };
 
-  const isFormValid = () => {
-    return (
-      Object.keys(formData).every((key) => formData[key] !== "") &&
-      imageFile === null
-    );
-  };
-
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -187,7 +180,7 @@ const Products = () => {
               buttonText={currentEditedId ? "Save Changes" : "Add Product"}
               onSubmit={handleSubmit}
               imageUploadLoading={imageUploadLoading}
-              isBtnDisabled={!isFormValid()}
+              isBtnDisabled={!uploadedImageUrl}
             />
           </div>
         </SheetContent>

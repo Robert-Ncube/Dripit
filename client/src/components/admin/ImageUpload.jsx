@@ -73,7 +73,7 @@ const ImageUpload = ({
   return (
     <div className={`w-full py-5 ${!customize ? "max-w-md mx-auto" : ""}`}>
       <label className="text-lg py-2 font-semibold block">
-        Upload Product Image
+        Upload {customize ? "Hero" : "Product"} Image
       </label>
       <div
         className="border-2 border-dashed rounded-lg p-4"

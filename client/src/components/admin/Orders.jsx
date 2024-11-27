@@ -98,7 +98,7 @@ const Orders = () => {
                       {orderItem?.orderStatus}
                     </Badge>
                   </TableCell>
-                  <TableCell>{orderItem?.totalAmount}</TableCell>
+                  <TableCell>${orderItem?.totalAmount}</TableCell>
                   <TableCell>
                     <Dialog
                       open={openDetails}

@@ -44,6 +44,7 @@ const OrderDetails = ({ orderDetails }) => {
     ).then((data) => {
       if (data?.payload.success) {
         dispatch(getOrderDetails(orderDetails?._id));
+        dispatch(getAllOrders());
         setFormData(initialFormData);
       }
     });
