@@ -48,7 +48,9 @@ const ImageUpload = ({
       const data = new FormData();
       data.append("my_file", imageFile);
 
-      const url = "http://localhost:5000/api/admin/products/upload-image";
+      const url = `${
+        import.meta.env.VITE_API_URL
+      }/api/admin/products/upload-image`;
       const response = await axios.post(url, data);
 
       const result = response?.data?.url;

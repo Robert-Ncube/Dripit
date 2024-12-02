@@ -10,7 +10,7 @@ const initialState = {
 export const addProduct = createAsyncThunk(
   "/products/add",
   async (formData) => {
-    const url = "http://localhost:5000/api/admin/products/add";
+    const url = `${import.meta.env.VITE_API_URL}/api/admin/products/add`;
     const response = await axios.post(url, formData, {
       withCredentials: true,
     });
@@ -23,7 +23,7 @@ export const addProduct = createAsyncThunk(
 );
 
 export const getAllProducts = createAsyncThunk("/products/all", async () => {
-  const url = "http://localhost:5000/api/admin/products/all";
+  const url = `${import.meta.env.VITE_API_URL}/api/admin/products/all`;
   const response = await axios.get(url, {
     withCredentials: true,
   });
@@ -37,7 +37,9 @@ export const getAllProducts = createAsyncThunk("/products/all", async () => {
 export const deleteProduct = createAsyncThunk(
   "/products/delete",
   async (productId) => {
-    const url = `http://localhost:5000/api/admin/products/delete/${productId}`;
+    const url = `${
+      import.meta.env.VITE_API_URL
+    }/api/admin/products/delete/${productId}`;
     const response = await axios.delete(url, {
       withCredentials: true,
     });
@@ -54,7 +56,7 @@ export const deleteProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "/products/edit",
   async ({ id, formData }) => {
-    const url = `http://localhost:5000/api/admin/products/edit/${id}`;
+    const url = `${import.meta.env.VITE_API_URL}/api/admin/products/edit/${id}`;
     const response = await axios.put(url, formData, {
       withCredentials: true,
     });

@@ -16,7 +16,9 @@ export const getAllShopProducts = createAsyncThunk(
       sortBy: sortParams,
     });
 
-    const url = `http://localhost:5000/api/shop/products/all?${query.toString()}`;
+    const url = `${
+      import.meta.env.VITE_API_URL
+    }/api/shop/products/all?${query.toString()}`;
 
     const response = await axios.get(url, {
       withCredentials: true,
@@ -32,7 +34,7 @@ export const getAllShopProducts = createAsyncThunk(
 export const getShopProductById = createAsyncThunk(
   "/products/:id",
   async (id) => {
-    const url = `http://localhost:5000/api/shop/products/${id}`;
+    const url = `${import.meta.env.VITE_API_URL}/api/shop/products/${id}`;
     const response = await axios.get(url, {
       withCredentials: true,
     });

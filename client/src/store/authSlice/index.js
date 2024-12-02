@@ -11,7 +11,7 @@ const IniState = {
 export const registerUser = createAsyncThunk(
   "/auth/register",
   async (formData, { rejectWithValue }) => {
-    const url = "http://localhost:5000/api/auth/register";
+    const url = `${import.meta.env.VITE_API_URL}/api/auth/register`;
 
     try {
       const response = await axios.post(url, formData, {
@@ -32,7 +32,7 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "/auth/login",
   async (formData, { rejectWithValue }) => {
-    const url = "http://localhost:5000/api/auth/login";
+    const url = `${import.meta.env.VITE_API_URL}/api/auth/login`;
 
     try {
       const response = await axios.post(url, formData, {
@@ -51,7 +51,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const checkAuth = createAsyncThunk("/auth/check-auth", async () => {
-  const url = "http://localhost:5000/api/auth/check-auth";
+  const url = `${import.meta.env.VITE_API_URL}/api/auth/check-auth`;
 
   try {
     const response = await axios.get(url, {
@@ -73,7 +73,7 @@ export const checkAuth = createAsyncThunk("/auth/check-auth", async () => {
 });
 
 export const logoutUser = createAsyncThunk("/auth/logout", async () => {
-  const url = "http://localhost:5000/api/auth/logout";
+  const url = `${import.meta.env.VITE_API_URL}/api/auth/logout`;
 
   try {
     const response = await axios.post(

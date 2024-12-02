@@ -11,7 +11,7 @@ export const addFeatureImage = createAsyncThunk(
   "/feature/add",
   async (image) => {
     try {
-      const url = "http://localhost:5000/api/common/features/add";
+      const url = `${import.meta.env.VITE_API_URL}/api/common/features/add`;
       const response = await axios.post(url, { image });
 
       if (response.status === 200 && response.data.success) {
@@ -31,7 +31,9 @@ export const deleteFeatureImage = createAsyncThunk(
   "/feature/delete/:id",
   async (id) => {
     try {
-      const url = `http://localhost:5000/api/common/features/delete/${id}`;
+      const url = `${
+        import.meta.env.VITE_API_URL
+      }/api/common/features/delete/${id}`;
       const response = await axios.delete(url);
 
       if (response.status === 200 && response.data.success) {
@@ -49,7 +51,7 @@ export const deleteFeatureImage = createAsyncThunk(
 
 export const getFeatureImages = createAsyncThunk("/feature/get", async () => {
   try {
-    const url = "http://localhost:5000/api/common/features/get";
+    const url = `${import.meta.env.VITE_API_URL}/api/common/features/get`;
     const response = await axios.get(url);
 
     if (response.status === 200 && response.data.success) {

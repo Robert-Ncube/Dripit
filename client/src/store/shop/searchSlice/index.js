@@ -12,7 +12,7 @@ export const searchProduct = createAsyncThunk(
   async (keyword) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/shop/products/search/${keyword}`
+        `${import.meta.env.VITE_API_URL}/api/shop/products/search/${keyword}`
       );
 
       return response.data;

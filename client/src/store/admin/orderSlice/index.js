@@ -10,7 +10,7 @@ const initialState = {
 
 export const getAllOrders = createAsyncThunk("/admin/orders/all", async () => {
   try {
-    const url = "http://localhost:5000/api/admin/orders/all";
+    const url = `${import.meta.env.VITE_API_URL}/api/admin/orders/all`;
     const response = await axios.get(url);
 
     return response.data;
@@ -23,7 +23,7 @@ export const getOrderDetails = createAsyncThunk(
   "admin/orders/one",
   async (orderId) => {
     try {
-      const url = `http://localhost:5000/api/admin/orders/${orderId}`;
+      const url = `${import.meta.env.VITE_API_URL}/api/admin/orders/${orderId}`;
       const response = await axios.get(url);
 
       return response.data;
@@ -37,7 +37,9 @@ export const updateOrderStatus = createAsyncThunk(
   "admin/orders/update",
   async ({ orderId, orderStatus }) => {
     try {
-      const url = `http://localhost:5000/api/admin/orders/update/${orderId}`;
+      const url = `${
+        import.meta.env.VITE_API_URL
+      }/api/admin/orders/update/${orderId}`;
       const response = await axios.put(url, { orderStatus });
 
       return response.data;
