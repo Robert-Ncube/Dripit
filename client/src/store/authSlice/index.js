@@ -6,6 +6,7 @@ const IniState = {
   isAuthenticated: false,
   isLoading: true,
   user: null,
+  token: null,
 };
 
 export const registerUser = createAsyncThunk(
@@ -50,13 +51,13 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const checkAuth = createAsyncThunk("/auth/check-auth", async () => {
+export const checkAuth = createAsyncThunk("/auth/check-auth", async (token) => {
   const url = `${import.meta.env.VITE_API_URL}/api/auth/check-auth`;
 
   try {
     const response = await axios.get(url, {
-      withCredentials: true,
       headers: {
+        Authorization: `Bearer ${token}`,
         "Cache-Control":
           "no-store, no-cache, must-revalidate, proxy-revalidate",
       },
@@ -99,6 +100,12 @@ const authSlice = createSlice({
   initialState: IniState,
   reducers: {
     setUser: (state, action) => {},
+    resetTokenAndCredentials: (state) => {
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+      sessionStorage.removeItem("token");
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -124,6 +131,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isAuthenticated = true;
         state.user = action.payload.user;
+        state.token = action.payload.token;
+        sessionStorage.setItem("token", JSON.stringify(action.payload.token));
         console.log(action.payload.user);
         toast.success(action.payload.message);
       })
@@ -131,6 +140,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isAuthenticated = false;
         state.user = null;
+        state.token = null;
         toast.error(action.payload);
       })
       .addCase(checkAuth.pending, (state) => {
@@ -158,5 +168,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, resetTokenAndCredentials } = authSlice.actions;
 export default authSlice.reducer;

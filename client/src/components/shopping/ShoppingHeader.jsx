@@ -22,7 +22,7 @@ import {
 import { IoCartOutline } from "react-icons/io5";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { FaUserCog } from "react-icons/fa";
-import { logoutUser } from "@/store/authSlice";
+import { logoutUser, resetTokenAndCredentials } from "@/store/authSlice";
 import CartWrapper from "./CartWrapper";
 import { fetchCartItems } from "@/store/cartSlice";
 import { Label } from "../ui/label";
@@ -37,7 +37,10 @@ const HeaderRightContent = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logoutUser());
+    // dispatch(logoutUser());
+    dispatch(resetTokenAndCredentials());
+    sessionStorage.clear();
+    navigate("/auth/login");
   };
 
   useEffect(() => {

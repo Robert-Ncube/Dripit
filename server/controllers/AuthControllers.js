@@ -122,10 +122,38 @@ export const logout = async (req, res) => {
 
 export const deleteProfile = async (req, res) => {};
 
+// export const authMiddleware = async (req, res, next) => {
+//   try {
+//     // Check if the JWT token is present in the request
+//     const token = req.cookies.token;
+
+//     // Verify the JWT token
+//     if (!token) {
+//       return res.status(401).json({ success: false, error: "Unauthorized!" });
+//     }
+
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+//     // Check if the token is valid
+//     if (!decoded) {
+//       return res.status(401).json({ success: false, error: "Unauthorized!" });
+//     }
+
+//     // Attach the user to the request object
+//     req.user = decoded;
+
+//     next();
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ success: false, error: "Server error!" });
+//   }
+// };
+
 export const authMiddleware = async (req, res, next) => {
   try {
     // Check if the JWT token is present in the request
-    const token = req.cookies.token;
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
 
     // Verify the JWT token
     if (!token) {
